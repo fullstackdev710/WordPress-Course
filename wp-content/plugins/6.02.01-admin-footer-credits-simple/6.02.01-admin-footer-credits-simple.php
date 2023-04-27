@@ -85,3 +85,13 @@ function wpplugin_default_sub_pages()
 }
 
 add_action('admin_menu', 'wpplugin_default_sub_pages');
+
+//Add a link to your settings page in your plugin
+function wpplugin_add_settings_link($links)
+{
+  $settings_link = '<a href="admin.php?page=wpplugin">' . __('Settings') . '</a>';
+  array_push($links, $settings_link);
+  return $links;
+}
+$filter_name = "plugin_action_links_" . plugin_basename(__FILE__);
+add_filter($filter_name, 'wpplugin_add_settings_link');
